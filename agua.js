@@ -1,7 +1,4 @@
-let dados = [
-    {data: '31-01-2026', copos: 10},
-    {data: '01-02-2026', copos: 6}
-]
+let dados = [];
 let dataAtual = pegarDataAtual();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,11 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     botaoAdicionarCopoHoje.addEventListener('click', () => {
         tomarAgua(dataAtual);
     });
-    dados = dados.sort((a, b) => {
-        const dataA = a.data.split('-').reverse().join('');
-        const dataB = b.data.split('-').reverse().join('');
-        return dataB.localeCompare(dataA);
-    });
+    // dados = dados.sort((a, b) => {
+    //     const dataA = a.data.split('-').reverse().join('');
+    //     const dataB = b.data.split('-').reverse().join('');
+    //     return dataB.localeCompare(dataA);
+    // });
+    inicializarRepositorioDados();
     renderizarTabela();
 });
 
@@ -51,6 +49,7 @@ function tomarAgua(data) {
     } else {
         dados.unshift({data: data, copos: 1});
     }
+    salvarDadosNoRepositorio();
     renderizarTabela();
 }
 
@@ -59,10 +58,23 @@ function decrementarCopo(data) {
     if (indice !== -1 && dados[indice].copos > 0) {
         dados[indice].copos -= 1;
     }
+    salvarDadosNoRepositorio();
     renderizarTabela();
 }
 
 function renderizarTabela() {
     const tabelaCorpo = document.getElementById('dados');
     tabelaCorpo.innerHTML = converterJsonParaHtml(dados);
+}
+
+function inicializarRepositorioDados() {
+    if (!localStorage.getItem('coposAgua')) {
+        localStorage.setItem('coposAgua', JSON.stringify([]));
+    } else {
+        dados = JSON.parse(localStorage.getItem('coposAgua'));
+    }
+}
+
+function salvarDadosNoRepositorio() {
+    localStorage.setItem('coposAgua', JSON.stringify(dados));
 }
