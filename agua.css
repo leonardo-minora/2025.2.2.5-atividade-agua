@@ -1,0 +1,158 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--azul-escuro: #0b1f3a;
+	--azul: #1e88e5;
+	--azul-claro: #e3f2fd;
+	--cinza: #5f6b7a;
+	--branco: #ffffff;
+	--sombra: 0 10px 25px rgba(11, 31, 58, 0.12);
+}
+
+body {
+	font-family: "Segoe UI", Roboto, Arial, sans-serif;
+	background: linear-gradient(180deg, #f6f9ff 0%, #edf3ff 100%);
+	color: var(--azul-escuro);
+	min-height: 100vh;
+	padding: 16px;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin: 8px 0 20px;
+}
+
+h1 {
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+header button {
+	align-self: flex-start;
+	border: none;
+	background: var(--azul);
+	color: var(--branco);
+	padding: 12px 18px;
+	border-radius: 999px;
+	font-weight: 600;
+	text-transform: lowercase;
+	box-shadow: var(--sombra);
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+header button:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 16px 30px rgba(11, 31, 58, 0.2);
+}
+
+main {
+	background: var(--branco);
+	border-radius: 16px;
+	padding: 16px;
+	box-shadow: var(--sombra);
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead {
+	background: var(--azul-claro);
+}
+
+th,
+td {
+	text-align: left;
+	padding: 12px 10px;
+	font-size: 0.95rem;
+}
+
+th {
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-size: 0.75rem;
+	color: var(--cinza);
+}
+
+tbody tr {
+	border-bottom: 1px solid #e6edf7;
+}
+
+tbody tr:last-child {
+	border-bottom: none;
+}
+
+.acoes {
+	display: flex;
+	gap: 8px;
+}
+
+.acao {
+	border: 1px solid #d6e2f3;
+	background: #f8fbff;
+	color: var(--azul-escuro);
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.acao:hover {
+	background: #e8f1ff;
+	border-color: #c5d8f1;
+	transform: translateY(-1px);
+}
+
+.acao-adicionar {
+	color: #0f7ae5;
+}
+
+.acao-remover {
+	color: #e53935;
+}
+
+@media (min-width: 600px) {
+	body {
+		padding: 32px;
+	}
+
+	header {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 28px;
+	}
+
+	h1 {
+		font-size: 2rem;
+	}
+
+	main {
+		padding: 24px;
+	}
+
+	th,
+	td {
+		padding: 14px 14px;
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 960px) {
+	body {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+}
