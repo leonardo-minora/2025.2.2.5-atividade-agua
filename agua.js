@@ -28,7 +28,15 @@ function converterJsonParaHtml(dados) {
         `<tr>
             <td>${dado.data}</td>
             <td>${dado.copos}</td>
-            <td>${dado.copos*0.2}</td>
+            <td>${
+                (dado.copos*0.2).toLocaleString(
+                    'pt-BR', 
+                    {
+                        minimumFractionDigits: 1, 
+                        maximumFractionDigits: 1
+                    }
+                )} L
+            </td>
             <td class="acoes">
                 <button class="acao acao-adicionar" aria-label="Adicionar copo" onclick="tomarAgua('${dado.data}')">
                     <i class="fa-solid fa-plus"></i>
